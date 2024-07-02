@@ -1,6 +1,7 @@
 {
 	"name": "lazy-svelte-image",
-	"version": "0.0.1",
+	"version": "1.0.4",
+	"license":"MIT",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -29,7 +30,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
-		"@sveltejs/package": "^2.0.0",
+		"@sveltejs/package": "^2.3.2",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@types/eslint": "^8.56.7",
 		"eslint": "^9.0.0",

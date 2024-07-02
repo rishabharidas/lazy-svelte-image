@@ -1,58 +1,50 @@
-# create-svelte
+# lazy-image-loader
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
+A custom Image component/tag like component with customizations, loader ...
 
-## Creating a project
+## Installing the Package
 
 If you're seeing this, you've probably already done this step. Congrats!
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+npm i lazy-svelte-image
 ```
 
-## Developing
+## Usage
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've installed you can import the package and use just like ```<img>``` . an exaple is given below
 
 ```bash
-npm run dev
+import { Image } from 'lazy-svelte-image'
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+
+<Image src="" alt="" />
+
+# or
+
+<Image> <!-- slot--> </Image>
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
 
-## Building
+## Customization
 
-To build your library:
+Currenlty you can provide custom loader nad broken image icon as slot. use slot like how you use it in svelte.
+
+#### For custom Broken Images/Icons
 
 ```bash
-npm run package
+<span slot="boken">
+<!-- provide contents here -->
+</span>
 ```
-
-To create a production version of your showcase app:
+#### For custom Loaders
 
 ```bash
-npm run build
+<span slot="loader">
+<!-- provide loader  -->
+</span>
 ```
 
-You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
-```
+##### Looking forward for feature requests and usages 😃..
