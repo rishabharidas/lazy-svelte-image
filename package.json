@@ -1,7 +1,23 @@
 {
 	"name": "lazy-svelte-image",
 	"version": "1.0.4",
-	"license":"MIT",
+	"license": "MIT",
+	"keywords": [
+		"svelte",
+		"svelte-image",
+		"image",
+		"lazy loading",
+		"loader",
+		"customization",
+		"img",
+		"svelte image",
+		"Image"
+	],
+	"repository": {
+    "type": "git",
+    "url": "https://github.com/rishabharidas/lazy-svelte-image"
+  },
+	"homepage": "https://github.com/rishabharidas/lazy-svelte-image#readme",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
