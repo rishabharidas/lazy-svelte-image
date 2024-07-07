@@ -42,7 +42,7 @@ Currenlty you can provide custom loader and broken image icon as slot. use slot 
   #### For custom broken Images/Icons
 
   ```bash
-  <span slot="boken">
+  <span slot="broken">
     <!-- provide code here -->
   </span>
   ```
