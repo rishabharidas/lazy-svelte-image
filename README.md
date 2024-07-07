@@ -29,22 +29,30 @@ import { Image } from 'lazy-svelte-image'
 
 ## Customization
 
-Currenlty you can provide custom loader nad broken image icon as slot. use slot like how you use it in svelte.
+Currenlty you can provide custom loader and broken image icon as slot. use slot like how you use it in svelte.
 
-#### For custom Broken Images/Icons
+  ### Props
 
-```bash
-<span slot="boken">
-<!-- provide contents here -->
-</span>
-```
-#### For custom Loaders
+  - <code>disableLoader</code> - disable all loaders
+  - <code>disableBroken</code> - disable all broken view
+  - <code>backgroundColor</code> - set custom background color for default broken/loader
 
-```bash
-<span slot="loader">
-<!-- provide loader  -->
-</span>
-```
+  ### Slots
+
+  #### For custom broken Images/Icons
+
+  ```bash
+  <span slot="boken">
+    <!-- provide code here -->
+  </span>
+  ```
+  #### For custom Loaders
+
+  ```bash
+  <span slot="loader">
+    <!-- provide loader code here  -->
+  </span>
+  ```
 
 
 ##### Looking forward for feature requests and usages 😃..

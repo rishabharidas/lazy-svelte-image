@@ -1,6 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+
 	export let src: string;
+	export let backgroundColor: string = '#c2c2c224';
+	export let disabeLoader: boolean = false;
+	export let disableBroken: boolean = false;
 
 	let loaded: boolean = false;
 	let failed: boolean = false;
@@ -31,22 +35,26 @@
 {#if loaded}
 	<img {...$$restProps} {src} alt="" />
 {:else if failed}
-	<div class="image-placeholder">
-		{#if $$slots.broken}
-			<slot name="broken" />
-		{:else}
-			<div class="broken-image">
-				{@html icons.broken}
-				Not Found
-			</div>
+	<div class="image-placeholder" style="--background-color: {backgroundColor}">
+		{#if !disableBroken}
+			{#if $$slots.broken}
+				<slot name="broken" />
+			{:else}
+				<div class="broken-image">
+					{@html icons.broken}
+					Not Found
+				</div>
+			{/if}
 		{/if}
 	</div>
 {:else if loading}
-	<div class="image-placeholder">
-		{#if $$slots.loader}
-			<slot name="loader" />
-		{:else}
-			{@html icons.loader}
+	<div class="image-placeholder" style="--background-color: {backgroundColor}">
+		{#if !disabeLoader}
+			{#if $$slots.loader}
+				<slot name="loader" />
+			{:else}
+				{@html icons.loader}
+			{/if}
 		{/if}
 	</div>
 {/if}
@@ -67,6 +75,6 @@
 		width: 100%;
 		height: 100%;
 		align-items: center;
-		background-color: #c2c2c224;
+		background-color: var(--background-color);
 	}
 </style>
