@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 
 	export let src: string;
+	export let alt: string = ''
 	export let backgroundColor: string = '#c2c2c224';
 	export let disabeLoader: boolean = false;
 	export let disableBroken: boolean = false;
@@ -33,7 +34,7 @@
 </script>
 
 {#if loaded}
-	<img {...$$restProps} {src} alt="" />
+	<img {...$$restProps} {src} {alt} />
 {:else if failed}
 	<div class="image-placeholder" style="--background-color: {backgroundColor}">
 		{#if !disableBroken}
