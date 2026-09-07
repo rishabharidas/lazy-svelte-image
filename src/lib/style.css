@@ -1,0 +1,159 @@
+/* lazy-svelte-image universal stylesheet */
+
+:root {
+	--lazy-bg-default: #c2c2c224;
+	--lazy-fade-default: 300ms;
+	--lazy-blur-default: 12px;
+	--lazy-primary-color: #629aa9;
+	--lazy-text-color: #4b5563;
+}
+
+.lazy-image-wrapper {
+	position: relative;
+	display: block;
+	width: 100%;
+	overflow: hidden;
+	box-sizing: border-box;
+	background-color: var(--lazy-bg, var(--lazy-bg-default));
+}
+
+.lazy-image-wrapper[data-aspect-ratio] {
+	aspect-ratio: var(--lazy-aspect-ratio, auto);
+}
+
+.lazy-image-picture,
+.lazy-image-main {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: var(--lazy-object-fit, cover);
+	object-position: var(--lazy-object-position, center);
+	opacity: 0;
+	transition: opacity var(--lazy-fade, var(--lazy-fade-default)) cubic-bezier(0.4, 0, 0.2, 1);
+	will-change: opacity;
+}
+
+.lazy-image-main.is-loaded {
+	opacity: 1;
+}
+
+.lazy-image-placeholder-img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: var(--lazy-object-fit, cover);
+	object-position: var(--lazy-object-position, center);
+	filter: blur(var(--lazy-blur, var(--lazy-blur-default)));
+	transform: scale(1.06);
+	transition:
+		opacity var(--lazy-fade, var(--lazy-fade-default)) ease-out,
+		visibility 0s linear var(--lazy-fade, var(--lazy-fade-default));
+	pointer-events: none;
+	opacity: 1;
+}
+
+.lazy-image-placeholder-img.is-hidden {
+	opacity: 0;
+	visibility: hidden;
+}
+
+.lazy-image-overlay {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none;
+	z-index: 2;
+}
+
+.lazy-image-overlay.interactive {
+	pointer-events: auto;
+}
+
+.lazy-image-loader-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+}
+
+.lazy-image-spinner {
+	width: 48px;
+	height: 48px;
+	animation: lazy-image-spin 1s linear infinite;
+}
+
+.lazy-image-spinner circle {
+	stroke: var(--lazy-spinner-color, var(--lazy-primary-color));
+	stroke-dasharray: 113.1 39.7;
+	stroke-width: 4;
+	fill: none;
+}
+
+@keyframes lazy-image-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.lazy-image-broken-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 16px;
+	width: 100%;
+	height: 100%;
+	color: var(--lazy-text-color);
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-size: 11px;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+.lazy-image-broken-icon {
+	width: 40px;
+	height: 40px;
+	fill: currentColor;
+	opacity: 0.65;
+}
+
+.lazy-image-retry-button {
+	margin-top: 4px;
+	padding: 4px 10px;
+	font-size: 11px;
+	font-family: inherit;
+	color: #ffffff;
+	background-color: var(--lazy-primary-color);
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition:
+		opacity 0.2s ease,
+		transform 0.1s ease;
+}
+
+.lazy-image-retry-button:hover {
+	opacity: 0.9;
+	transform: scale(1.02);
+}
+
+.lazy-image-retry-button:active {
+	transform: scale(0.98);
+}
+
+.lazy-image-caption {
+	display: block;
+	margin-top: 6px;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	color: var(--lazy-text-color);
+}

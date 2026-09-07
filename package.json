@@ -1,6 +1,6 @@
 {
 	"name": "lazy-svelte-image",
-	"version": "1.1.2",
+	"version": "2.0.0",
 	"license": "MIT",
 	"keywords": [
 		"svelte",
@@ -14,26 +14,52 @@
 		"Image"
 	],
 	"repository": {
-    "type": "git",
-    "url": "https://github.com/rishabharidas/lazy-svelte-image"
-  },
+		"type": "git",
+		"url": "git+https://github.com/rishabharidas/lazy-svelte-image.git"
+	},
+	"sideEffects": [
+		"*.css",
+		"./dist/browser.global.js",
+		"./dist/element/*"
+	],
 	"homepage": "https://github.com/rishabharidas/lazy-svelte-image#readme",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
 		"preview": "vite preview",
-		"package": "svelte-kit sync && svelte-package && publint",
+		"test": "node --test tests/universal.test.ts",
+		"package": "svelte-kit sync && svelte-package && vite build --config vite.browser.config.ts && publint",
 		"prepublishOnly": "npm run package",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
 	},
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"svelte": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"unpkg": "./dist/browser.global.js",
+	"jsdelivr": "./dist/browser.global.js",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
-			"svelte": "./dist/index.js"
-		}
+			"svelte": "./dist/index.js",
+			"default": "./dist/index.js"
+		},
+		"./vanilla": {
+			"types": "./dist/vanilla/index.d.ts",
+			"default": "./dist/vanilla/index.js"
+		},
+		"./element": {
+			"types": "./dist/element/index.d.ts",
+			"default": "./dist/element/index.js"
+		},
+		"./action": {
+			"types": "./dist/action/index.d.ts",
+			"default": "./dist/action/index.js"
+		},
+		"./style.css": "./dist/style.css"
 	},
 	"files": [
 		"dist",
@@ -41,29 +67,36 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^4.0.0"
+		"svelte": ">=3.55.0 || ^4.0.0 || ^5.0.0"
+	},
+	"peerDependenciesMeta": {
+		"svelte": {
+			"optional": true
+		}
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^3.0.0",
-		"@sveltejs/kit": "^2.0.0",
-		"@sveltejs/package": "^2.3.2",
-		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"@sveltejs/adapter-auto": "^7.0.1",
+		"@sveltejs/kit": "^2.70.3",
+		"@sveltejs/package": "^2.5.8",
+		"@sveltejs/vite-plugin-svelte": "^5.0.3",
 		"@types/eslint": "^8.56.7",
-		"eslint": "^9.0.0",
+		"@types/node": "^26.5.0",
+		"eslint": "^9.20.0",
 		"eslint-config-prettier": "^9.1.0",
-		"eslint-plugin-svelte": "^2.36.0",
+		"eslint-plugin-svelte": "^3.0.0",
 		"globals": "^15.0.0",
-		"prettier": "^3.1.1",
-		"prettier-plugin-svelte": "^3.1.2",
-		"publint": "^0.1.9",
-		"svelte": "^4.2.7",
-		"svelte-check": "^3.6.0",
-		"tslib": "^2.4.1",
-		"typescript": "^5.0.0",
-		"typescript-eslint": "^8.0.0-alpha.20",
-		"vite": "^5.0.11"
+		"prettier": "^3.5.0",
+		"prettier-plugin-svelte": "^3.3.3",
+		"publint": "^0.3.24",
+		"svelte": "^5.57.0",
+		"svelte-check": "^4.1.4",
+		"tslib": "^2.8.1",
+		"typescript": "^5.7.3",
+		"typescript-eslint": "^8.24.0",
+		"vite": "^6.4.3"
 	},
-	"svelte": "./dist/index.js",
-	"types": "./dist/index.d.ts",
+	"overrides": {
+		"cookie": "^0.7.2"
+	},
 	"type": "module"
 }
