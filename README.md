@@ -260,4 +260,4 @@ This version is **100% backward compatible** with `lazy-svelte-image` v1.1.2:
 
 ## 📄 License
 
-MIT © [Rishabh Haridas](https://github.com/rishabharidas)
+MIT © [Rishab Haridas](https://github.com/rishabharidas)
